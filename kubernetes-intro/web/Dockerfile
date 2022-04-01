@@ -9,5 +9,4 @@ RUN mkdir -p /app; \
     echo "location / {" >> $nginx_conf; \
     echo "    root   /app;" >> $nginx_conf; \
     echo "    index  index.html index.htm;" >> $nginx_conf; \
-    echo "}" >> $nginx_conf; \
-    cat $nginx_conf; cd /app; pwd; ls -la
+    echo "}" >> $nginx_conf;
