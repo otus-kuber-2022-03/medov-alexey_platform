@@ -11,3 +11,9 @@
 - Написать валиадный манифест kubernetes-intro/web-pod.yaml
 
 - Написал
+
+Задание 3:
+
+- Написать валиадный и рабочий манифест kubernetes-intro/frontend-pod-healthy.yaml
+
+- Написал
