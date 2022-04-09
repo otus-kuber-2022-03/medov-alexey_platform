@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+        app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: server
+          image: medoff/temp-frontend:v0.0.1
+          env:
+           - name: PRODUCT_CATALOG_SERVICE_ADDR
+             value: "PRODUCT_CATALOG_SERVICE_ADDR:5001"
+           - name: CURRENCY_SERVICE_ADDR
+             value: "CURRENCY_SERVICE_ADDR:5002"
+           - name: CART_SERVICE_ADDR
+             value: "CART_SERVICE_ADDR:5003"
+           - name: RECOMMENDATION_SERVICE_ADDR
+             value: "RECOMMENDATION_SERVICE_ADDR:5004"
+           - name: CHECKOUT_SERVICE_ADDR
+             value: "CHECKOUT_SERVICE_ADDR:5005"
+           - name: SHIPPING_SERVICE_ADDR
+             value: "SHIPPING_SERVICE_ADDR:5006"
+           - name: AD_SERVICE_ADDR
+             value: "AD_SERVICE_ADDR:5007"
+          readinessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: "/_healthz"
+              port: 8080
+              httpHeaders:
+              - name: "Cookie"
+                value: "shop_session-id=x-readiness-probe"
